@@ -2,7 +2,7 @@ import Alamofire
 import BigInt
 import EvmKit
 import Foundation
-import HsToolKit
+import WWToolKit
 
 class OneInchProvider {
     private static let notEnoughEthErrors = [

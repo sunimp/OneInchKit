@@ -1,7 +1,7 @@
 import BigInt
 import EvmKit
 import Foundation
-import HsExtensions
+import WWExtensions
 
 public struct ApproveCallData {
     public let data: Data
@@ -19,6 +19,6 @@ public struct ApproveCallData {
 
 extension ApproveCallData: CustomStringConvertible {
     public var description: String {
-        "[ApproveCallData: \nto: \(to.hex); \nvalue: \(value.description); \ndata: \(data.hs.hex)]"
+        "[ApproveCallData: \nto: \(to.hex); \nvalue: \(value.description); \ndata: \(data.ww.hex)]"
     }
 }

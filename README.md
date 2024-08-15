@@ -79,7 +79,7 @@ sendSingle
     .subscribe(
         onSuccess: { fullTransaction in
             let transaction = fullTransaction.transaction
-            print("Transaction sent: \(transaction.hash.hs.hexString)")
+            print("Transaction sent: \(transaction.hash.ww.hexString)")
         }, onError: { error in
             print("Send failed: \(error)")
         }

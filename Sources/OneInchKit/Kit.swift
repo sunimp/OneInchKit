@@ -1,7 +1,7 @@
 import BigInt
 import EvmKit
 import Foundation
-import HsToolKit
+import WWToolKit
 
 public class Kit {
     private let provider: OneInchProvider
