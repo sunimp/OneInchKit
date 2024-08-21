@@ -1,7 +1,16 @@
+//
+//  BalanceController.swift
+//  OneInchKit-Example
+//
+//  Created by Sun on 2024/8/21.
+//
+
+import UIKit
 import Combine
+
 import EvmKit
 import SnapKit
-import UIKit
+import UIExtensions
 
 class BalanceController: UIViewController {
     private let adapter: EthereumAdapter = Manager.shared.adapter
@@ -62,7 +71,7 @@ class BalanceController: UIViewController {
     @objc func logout() {
         Manager.shared.logout()
 
-        if let window = UIApplication.shared.keyWindow {
+        if let window = UIApplication.shared.activeWindow {
             UIView.transition(with: window, duration: 0.5, options: .transitionCrossDissolve, animations: {
                 window.rootViewController = UINavigationController(rootViewController: WordsController())
             })

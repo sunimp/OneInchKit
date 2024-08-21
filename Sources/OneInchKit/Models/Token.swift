@@ -1,3 +1,12 @@
+//
+//  Token.swift
+//  OneInchKit
+//
+//  Created by Sun on 2024/8/21.
+//
+
+import Foundation
+
 public struct Token {
     public let symbol: String
     public let name: String

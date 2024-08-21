@@ -1,3 +1,12 @@
+//
+//  TokenMapper.swift
+//  OneInchKit
+//
+//  Created by Sun on 2024/8/21.
+//
+
+import Foundation
+
 enum TokenMapper {
     static func token(map: [String: Any]) throws -> Token {
         guard let symbol = map["symbol"] as? String,

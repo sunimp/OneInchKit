@@ -1,6 +1,14 @@
+//
+//  Kit.swift
+//  OneInchKit
+//
+//  Created by Sun on 2024/8/21.
+//
+
+import Foundation
+
 import BigInt
 import EvmKit
-import Foundation
 import WWToolKit
 
 public class Kit {
@@ -11,8 +19,9 @@ public class Kit {
     }
 }
 
-public extension Kit {
-    func quote(networkManager: NetworkManager, chain: Chain, fromToken: Address, toToken: Address, amount: BigUInt,
+extension Kit {
+    
+    public func quote(networkManager: NetworkManager, chain: Chain, fromToken: Address, toToken: Address, amount: BigUInt,
                fee: Decimal? = nil, protocols: String? = nil, gasPrice: GasPrice? = nil, complexityLevel: Int? = nil,
                connectorTokens: String? = nil, gasLimit: Int? = nil, mainRouteParts: Int? = nil, parts: Int? = nil) async throws -> Quote
     {
@@ -33,7 +42,7 @@ public extension Kit {
         )
     }
 
-    func swap(networkManager: NetworkManager, chain: Chain, receiveAddress: Address, fromToken: Address, toToken: Address,
+    public func swap(networkManager: NetworkManager, chain: Chain, receiveAddress: Address, fromToken: Address, toToken: Address,
               amount: BigUInt, slippage: Decimal, referrer: String? = nil, fee: Decimal? = nil, protocols: [String]? = nil, recipient: Address? = nil,
               gasPrice: GasPrice? = nil, burnChi: Bool? = nil, complexityLevel: Int? = nil, connectorTokens: [String]? = nil,
               allowPartialFill: Bool? = nil, gasLimit: Int? = nil, mainRouteParts: Int? = nil, parts: Int? = nil) async throws -> Swap
@@ -62,17 +71,17 @@ public extension Kit {
     }
 }
 
-public extension Kit {
-    static func instance(apiKey: String) -> Kit {
+extension Kit {
+    public static func instance(apiKey: String) -> Kit {
         Kit(provider: OneInchProvider(apiKey: apiKey))
     }
 
-    static func addDecorators(to evmKit: EvmKit.Kit) {
+    public static func addDecorators(to evmKit: EvmKit.Kit) {
         evmKit.add(methodDecorator: OneInchMethodDecorator(contractMethodFactories: OneInchContractMethodFactories.shared))
         evmKit.add(transactionDecorator: OneInchTransactionDecorator(address: evmKit.address))
     }
 
-    static func routerAddress(chain: Chain) throws -> Address {
+    public static func routerAddress(chain: Chain) throws -> Address {
         switch chain.id {
         case 1, 10, 56, 100, 137, 250, 42161, 43114: return try Address(hex: "0x1111111254EEB25477B68fb85Ed929f73A960582")
         case 3, 4, 5, 42: return try Address(hex: "0x11111112542d85b3ef69ae05771c2dccff4faa26")
@@ -81,23 +90,23 @@ public extension Kit {
     }
 }
 
-public extension Kit {
-    enum UnsupportedChainError: Error {
+extension Kit {
+    public enum UnsupportedChainError: Error {
         case noRouterAddress
     }
 
-    enum QuoteError: Error {
+    public enum QuoteError: Error {
         case insufficientLiquidity
     }
 
-    enum SwapError: Error {
+    public enum SwapError: Error {
         case notEnough
         case cannotEstimate
     }
 }
 
-public extension BigUInt {
-    func toDecimal(decimals: Int) -> Decimal? {
+extension BigUInt {
+    public func toDecimal(decimals: Int) -> Decimal? {
         guard let decimalValue = Decimal(string: description) else {
             return nil
         }

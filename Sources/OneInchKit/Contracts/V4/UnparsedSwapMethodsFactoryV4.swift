@@ -1,6 +1,14 @@
+//
+//  UnparsedSwapMethodsFactoryV4.swift
+//  OneInchKit
+//
+//  Created by Sun on 2024/8/21.
+//
+
+import Foundation
+
 import BigInt
 import EvmKit
-import Foundation
 
 class UnparsedSwapMethodsFactoryV4: IContractMethodsFactory {
     var methodId: Data { Data() }

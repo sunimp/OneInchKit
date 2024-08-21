@@ -1,7 +1,16 @@
-import BigInt
+//
+//  Quote.swift
+//  OneInchKit
+//
+//  Created by Sun on 2024/8/21.
+//
+
 import Foundation
 
+import BigInt
+
 public struct Quote {
+    
     public let fromToken: Token
     public let toToken: Token
     public let toTokenAmount: BigUInt
@@ -23,8 +32,9 @@ extension Quote: CustomStringConvertible {
     }
 }
 
-public extension Quote {
-    var amountOut: Decimal? {
+extension Quote {
+    
+    public var amountOut: Decimal? {
         toTokenAmount.toDecimal(decimals: toToken.decimals)
     }
 }

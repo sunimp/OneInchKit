@@ -1,7 +1,17 @@
+//
+//  OneInchUnknownSwapDecoration.swift
+//  OneInchKit
+//
+//  Created by Sun on 2024/8/21.
+//
+
+import Foundation
+
 import BigInt
 import EvmKit
 
 public class OneInchUnknownSwapDecoration: OneInchDecoration {
+    
     public let tokenAmountIn: TokenAmount?
     public let tokenAmountOut: TokenAmount?
 
@@ -29,8 +39,9 @@ public class OneInchUnknownSwapDecoration: OneInchDecoration {
     }
 }
 
-public extension OneInchUnknownSwapDecoration {
-    struct TokenAmount {
+extension OneInchUnknownSwapDecoration {
+    
+    public struct TokenAmount {
         public let token: Token
         public let value: BigUInt
     }

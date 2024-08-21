@@ -93,11 +93,11 @@ sendSingle
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/horizontalsystems/OneInchKit.Swift.git", .upToNextMajor(from: "1.0.0"))
+    .package(url: "https://github.com/sunimp/OneInchKit.Swift.git", .upToNextMajor(from: "3.0.5"))
 ]
 ```
 
 ## License
 
-The `OneInchKit.Swift` toolkit is open source and available under the terms of the [MIT License](https://github.com/horizontalsystems/ethereum-kit-ios/blob/master/LICENSE).
+The `OneInchKit.Swift` toolkit is open source and available under the terms of the [MIT License](https://github.com/sunimp/OneInchKit.Swift/blob/master/LICENSE).
 

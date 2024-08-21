@@ -1,9 +1,18 @@
+//
+//  SwapTransaction.swift
+//  OneInchKit
+//
+//  Created by Sun on 2024/8/21.
+//
+
+import Foundation
+
 import BigInt
 import EvmKit
-import Foundation
 import WWExtensions
 
 public struct SwapTransaction {
+    
     public let from: Address
     public let to: Address
     public let data: Data
@@ -11,7 +20,7 @@ public struct SwapTransaction {
     public let gasPrice: GasPrice
     public let gasLimit: Int
 
-    init(from: Address, to: Address, data: Data, value: BigUInt, gasPrice: GasPrice, gasLimit: Int) {
+    public init(from: Address, to: Address, data: Data, value: BigUInt, gasPrice: GasPrice, gasLimit: Int) {
         self.from = from
         self.to = to
         self.data = data

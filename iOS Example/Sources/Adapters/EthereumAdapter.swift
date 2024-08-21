@@ -1,7 +1,15 @@
+//
+//  EthereumAdapter.swift
+//  OneInchKit-Example
+//
+//  Created by Sun on 2024/8/21.
+//
+
+import Foundation
+
 import BigInt
 import Combine
 import EvmKit
-import Foundation
 
 class EthereumAdapter {
     private let evmKit: Kit

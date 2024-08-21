@@ -1,7 +1,16 @@
-import BigInt
+//
+//  Swap.swift
+//  OneInchKit
+//
+//  Created by Sun on 2024/8/21.
+//
+
 import Foundation
 
+import BigInt
+
 public struct Swap {
+    
     public let fromToken: Token
     public let toToken: Token
     public let toTokenAmount: BigUInt
@@ -23,8 +32,9 @@ extension Swap: CustomStringConvertible {
     }
 }
 
-public extension Swap {
-    var amountOut: Decimal? {
+extension Swap {
+    
+    public var amountOut: Decimal? {
         toTokenAmount.toDecimal(decimals: toToken.decimals)
     }
 }

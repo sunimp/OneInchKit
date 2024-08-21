@@ -3,13 +3,13 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 52;
+	objectVersion = 54;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
+		A40805F62C75C366003947F1 /* UIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = A40805F52C75C366003947F1 /* UIExtensions */; };
 		D3500A2528ED468D0093A369 /* OneInchKit in Frameworks */ = {isa = PBXBuildFile; productRef = D3500A2428ED468D0093A369 /* OneInchKit */; };
-		D3604EC728F40E0D0066C366 /* UIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = D3604EC628F40E0D0066C366 /* UIExtensions */; };
 		D36AAAC923A237940065B32B /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36AAAAF23A237940065B32B /* Configuration.swift */; };
 		D36AAACA23A237940065B32B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D36AAAB023A237940065B32B /* Assets.xcassets */; };
 		D36AAACB23A237940065B32B /* Manager.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36AAAB223A237940065B32B /* Manager.swift */; };
@@ -50,9 +50,9 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A40805F62C75C366003947F1 /* UIExtensions in Frameworks */,
 				D36DFC2928EBDF5B00D2FC62 /* SnapKit in Frameworks */,
 				D3500A2528ED468D0093A369 /* OneInchKit in Frameworks */,
-				D3604EC728F40E0D0066C366 /* UIExtensions in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -164,7 +164,7 @@
 			packageProductDependencies = (
 				D36DFC2828EBDF5B00D2FC62 /* SnapKit */,
 				D3500A2428ED468D0093A369 /* OneInchKit */,
-				D3604EC628F40E0D0066C366 /* UIExtensions */,
+				A40805F52C75C366003947F1 /* UIExtensions */,
 			);
 			productName = EthereumKit;
 			productReference = 607FACD01AFB9204008FA782 /* OneInchKit Demo.app */;
@@ -176,29 +176,29 @@
 		607FACC81AFB9204008FA782 /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 0830;
+				LastUpgradeCheck = 1540;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
-						DevelopmentTeam = HC4MCAXJ66;
 						LastSwiftMigration = 0900;
 					};
 				};
 			};
 			buildConfigurationList = 607FACCB1AFB9204008FA782 /* Build configuration list for PBXProject "iOS Example" */;
 			compatibilityVersion = "Xcode 3.2";
-			developmentRegion = English;
+			developmentRegion = en;
 			hasScannedForEncodings = 0;
 			knownRegions = (
-				English,
 				Base,
+				en,
 			);
 			mainGroup = 607FACC71AFB9204008FA782;
 			packageReferences = (
 				D36DFC2728EBDF5B00D2FC62 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				D3604EC528F40E0C0066C366 /* XCRemoteSwiftPackageReference "UIExtensions" */,
+				A40805F42C75C366003947F1 /* XCRemoteSwiftPackageReference "UIExtensions.Swift" */,
 			);
 			productRefGroup = 607FACD11AFB9204008FA782 /* Products */;
 			projectDirPath = "";
@@ -256,14 +256,17 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -275,6 +278,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_DYNAMIC_NO_PIC = NO;
 				GCC_NO_COMMON_BLOCKS = YES;
@@ -310,14 +314,17 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_EMPTY_BODY = YES;
 				CLANG_WARN_ENUM_CONVERSION = YES;
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
 				CLANG_WARN_STRICT_PROTOTYPES = YES;
 				CLANG_WARN_SUSPICIOUS_MOVE = YES;
@@ -329,6 +336,7 @@
 				ENABLE_BITCODE = NO;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_USER_SCRIPT_SANDBOXING = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu99;
 				GCC_NO_COMMON_BLOCKS = YES;
 				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
@@ -350,7 +358,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = HC4MCAXJ66;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Sources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -358,7 +366,7 @@
 					"@executable_path/Frameworks",
 				);
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.horizontalsystems.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sunimp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "OneInchKit Demo";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -373,7 +381,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = HC4MCAXJ66;
+				DEVELOPMENT_TEAM = "";
 				INFOPLIST_FILE = Sources/Info.plist;
 				IPHONEOS_DEPLOYMENT_TARGET = 13.0;
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -381,7 +389,7 @@
 					"@executable_path/Frameworks",
 				);
 				MODULE_NAME = ExampleApp;
-				PRODUCT_BUNDLE_IDENTIFIER = "org.horizontalsystems.$(PRODUCT_NAME:rfc1034identifier)";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.sunimp.$(PRODUCT_NAME:rfc1034identifier)";
 				PRODUCT_NAME = "OneInchKit Demo";
 				SUPPORTED_PLATFORMS = "iphoneos iphonesimulator";
 				SUPPORTS_MACCATALYST = NO;
@@ -416,12 +424,12 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		D3604EC528F40E0C0066C366 /* XCRemoteSwiftPackageReference "UIExtensions" */ = {
+		A40805F42C75C366003947F1 /* XCRemoteSwiftPackageReference "UIExtensions.Swift" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/horizontalsystems/UIExtensions.Swift";
+			repositoryURL = "https://github.com/sunimp/UIExtensions.Swift.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 1.0.0;
+				minimumVersion = 1.1.0;
 			};
 		};
 		D36DFC2728EBDF5B00D2FC62 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
@@ -435,14 +443,14 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		A40805F52C75C366003947F1 /* UIExtensions */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = A40805F42C75C366003947F1 /* XCRemoteSwiftPackageReference "UIExtensions.Swift" */;
+			productName = UIExtensions;
+		};
 		D3500A2428ED468D0093A369 /* OneInchKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = OneInchKit;
-		};
-		D3604EC628F40E0D0066C366 /* UIExtensions */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D3604EC528F40E0C0066C366 /* XCRemoteSwiftPackageReference "UIExtensions" */;
-			productName = UIExtensions;
 		};
 		D36DFC2828EBDF5B00D2FC62 /* SnapKit */ = {
 			isa = XCSwiftPackageProductDependency;
