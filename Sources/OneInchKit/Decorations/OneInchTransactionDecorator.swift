@@ -11,8 +11,13 @@ import BigInt
 import Eip20Kit
 import EvmKit
 
+// MARK: - OneInchTransactionDecorator
+
 class OneInchTransactionDecorator {
-    private static let ethTokenAddresses = ["0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE", "0x0000000000000000000000000000000000000000"]
+    private static let ethTokenAddresses = [
+        "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
+        "0x0000000000000000000000000000000000000000",
+    ]
 
     private let address: Address
 
@@ -23,9 +28,9 @@ class OneInchTransactionDecorator {
     private func incomingTransfers(userAddress: Address, eventInstances: [ContractEventInstance]) -> [TransferEventInstance] {
         eventInstances.compactMap {
             if let transferEventInstance = $0 as? TransferEventInstance, transferEventInstance.to == userAddress {
-                return transferEventInstance
+                transferEventInstance
             } else {
-                return nil
+                nil
             }
         }
     }
@@ -33,9 +38,9 @@ class OneInchTransactionDecorator {
     private func outgoingTransfers(userAddress: Address, eventInstances: [ContractEventInstance]) -> [TransferEventInstance] {
         eventInstances.compactMap {
             if let transferEventInstance = $0 as? TransferEventInstance, transferEventInstance.from == userAddress {
-                return transferEventInstance
+                transferEventInstance
             } else {
-                return nil
+                nil
             }
         }
     }
@@ -70,13 +75,26 @@ class OneInchTransactionDecorator {
         if OneInchTransactionDecorator.ethTokenAddresses.contains(eip55Address) {
             return .evmCoin
         } else {
-            return .eip20Coin(address: address, tokenInfo: eventInstances.compactMap { $0 as? TransferEventInstance }.first { $0.contractAddress == address }?.tokenInfo)
+            return .eip20Coin(
+                address: address,
+                tokenInfo: eventInstances.compactMap { $0 as? TransferEventInstance }.first { $0.contractAddress == address }?
+                    .tokenInfo
+            )
         }
     }
 }
 
+// MARK: ITransactionDecorator
+
 extension OneInchTransactionDecorator: ITransactionDecorator {
-    public func decoration(from: Address?, to: Address?, value: BigUInt?, contractMethod: ContractMethod?, internalTransactions: [InternalTransaction], eventInstances: [ContractEventInstance]) -> TransactionDecoration? {
+    public func decoration(
+        from: Address?,
+        to: Address?,
+        value: BigUInt?,
+        contractMethod: ContractMethod?,
+        internalTransactions: [InternalTransaction],
+        eventInstances: [ContractEventInstance]
+    ) -> TransactionDecoration? {
         guard let from, let to, let value, let contractMethod else {
             return nil
         }
@@ -91,10 +109,17 @@ extension OneInchTransactionDecorator: ITransactionDecorator {
             switch tokenOut {
             case .evmCoin:
                 if !internalTransactions.isEmpty {
-                    amountOut = .exact(value: totalEthIncoming(userAddress: swapDescription.dstReceiver, internalTransactions: internalTransactions))
+                    amountOut = .exact(value: totalEthIncoming(
+                        userAddress: swapDescription.dstReceiver,
+                        internalTransactions: internalTransactions
+                    ))
                 }
+
             case .eip20Coin:
-                let totalAmount = totalAmount(tokenAddress: swapDescription.dstToken, transfers: incomingTransfers(userAddress: swapDescription.dstReceiver, eventInstances: eventInstances))
+                let totalAmount = totalAmount(
+                    tokenAddress: swapDescription.dstToken,
+                    transfers: incomingTransfers(userAddress: swapDescription.dstReceiver, eventInstances: eventInstances)
+                )
                 if totalAmount != 0 {
                     amountOut = .exact(value: totalAmount)
                 }
@@ -153,10 +178,17 @@ extension OneInchTransactionDecorator: ITransactionDecorator {
             switch tokenOut {
             case .evmCoin:
                 if !internalTransactions.isEmpty {
-                    amountOut = .exact(value: totalEthIncoming(userAddress: swapDescription.dstReceiver, internalTransactions: internalTransactions))
+                    amountOut = .exact(value: totalEthIncoming(
+                        userAddress: swapDescription.dstReceiver,
+                        internalTransactions: internalTransactions
+                    ))
                 }
+
             case .eip20Coin:
-                let totalAmount = totalAmount(tokenAddress: swapDescription.dstToken, transfers: incomingTransfers(userAddress: swapDescription.dstReceiver, eventInstances: eventInstances))
+                let totalAmount = totalAmount(
+                    tokenAddress: swapDescription.dstToken,
+                    transfers: incomingTransfers(userAddress: swapDescription.dstReceiver, eventInstances: eventInstances)
+                )
                 if totalAmount != 0 {
                     amountOut = .exact(value: totalAmount)
                 }
@@ -222,7 +254,10 @@ extension OneInchTransactionDecorator: ITransactionDecorator {
                 tokenAmountIn = OneInchUnknownSwapDecoration.TokenAmount(token: .evmCoin, value: value - totalInternalValue)
             } else if let firstTransfer = outgoingTransfers.first {
                 let total = totalAmount(tokenAddress: firstTransfer.contractAddress, transfers: outgoingTransfers)
-                tokenAmountIn = OneInchUnknownSwapDecoration.TokenAmount(token: addressToToken(address: firstTransfer.contractAddress, eventInstances: eventInstances), value: total)
+                tokenAmountIn = OneInchUnknownSwapDecoration.TokenAmount(
+                    token: addressToToken(address: firstTransfer.contractAddress, eventInstances: eventInstances),
+                    value: total
+                )
             }
 
             var tokenAmountOut: OneInchUnknownSwapDecoration.TokenAmount?
@@ -231,7 +266,10 @@ extension OneInchTransactionDecorator: ITransactionDecorator {
                 tokenAmountOut = OneInchUnknownSwapDecoration.TokenAmount(token: .evmCoin, value: totalInternalValue - value)
             } else if let firstTransfer = incomingTransfers.first {
                 let total = totalAmount(tokenAddress: firstTransfer.contractAddress, transfers: incomingTransfers)
-                tokenAmountOut = OneInchUnknownSwapDecoration.TokenAmount(token: addressToToken(address: firstTransfer.contractAddress, eventInstances: eventInstances), value: total)
+                tokenAmountOut = OneInchUnknownSwapDecoration.TokenAmount(
+                    token: addressToToken(address: firstTransfer.contractAddress, eventInstances: eventInstances),
+                    value: total
+                )
             }
 
             return OneInchUnknownSwapDecoration(

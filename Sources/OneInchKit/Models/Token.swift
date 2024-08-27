@@ -7,6 +7,8 @@
 
 import Foundation
 
+// MARK: - Token
+
 public struct Token {
     public let symbol: String
     public let name: String
@@ -22,6 +24,8 @@ public struct Token {
         self.logoUri = logoUri
     }
 }
+
+// MARK: CustomStringConvertible
 
 extension Token: CustomStringConvertible {
     public var description: String {

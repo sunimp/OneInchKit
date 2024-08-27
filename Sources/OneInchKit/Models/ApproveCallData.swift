@@ -11,6 +11,8 @@ import BigInt
 import EvmKit
 import WWExtensions
 
+// MARK: - ApproveCallData
+
 public struct ApproveCallData {
     public let data: Data
     public let gasPrice: Int
@@ -24,6 +26,8 @@ public struct ApproveCallData {
         self.value = value
     }
 }
+
+// MARK: CustomStringConvertible
 
 extension ApproveCallData: CustomStringConvertible {
     public var description: String {

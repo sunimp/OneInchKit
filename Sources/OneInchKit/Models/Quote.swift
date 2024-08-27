@@ -9,6 +9,8 @@ import Foundation
 
 import BigInt
 
+// MARK: - Quote
+
 public struct Quote {
     
     public let fromToken: Token
@@ -25,6 +27,8 @@ public struct Quote {
         self.estimateGas = estimateGas
     }
 }
+
+// MARK: CustomStringConvertible
 
 extension Quote: CustomStringConvertible {
     public var description: String {

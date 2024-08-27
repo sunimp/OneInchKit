@@ -10,17 +10,20 @@ import Foundation
 import BigInt
 import EvmKit
 
+// MARK: - SwapTransactionMapper
+
 enum SwapTransactionMapper {
     static func swapTransaction(map: [String: Any]) throws -> SwapTransaction {
-        guard let fromString = map["from"] as? String,
-              let from = try? Address(hex: fromString),
-              let toString = map["to"] as? String,
-              let to = try? Address(hex: toString),
-              let dataString = map["data"] as? String,
-              let data = dataString.ww.hexData,
-              let valueSting = map["value"] as? String,
-              let value = BigUInt(valueSting, radix: 10),
-              let gasLimit = map["gas"] as? Int
+        guard
+            let fromString = map["from"] as? String,
+            let from = try? Address(hex: fromString),
+            let toString = map["to"] as? String,
+            let to = try? Address(hex: toString),
+            let dataString = map["data"] as? String,
+            let data = dataString.ww.hexData,
+            let valueSting = map["value"] as? String,
+            let value = BigUInt(valueSting, radix: 10),
+            let gasLimit = map["gas"] as? Int
         else {
             throw ResponseError.invalidJson
         }
@@ -29,8 +32,10 @@ enum SwapTransactionMapper {
 
         if let gasPriceString = map["gasPrice"] as? String, let gasPriceInt = Int(gasPriceString) {
             gasPrice = .legacy(gasPrice: gasPriceInt)
-        } else if let maxFeePerGasString = map["maxFeePerGas"] as? String, let maxFeePerGas = Int(maxFeePerGasString),
-                  let maxPriorityFeePerGasString = map["maxPriorityFeePerGas"] as? String, let maxPriorityFeePerGas = Int(maxPriorityFeePerGasString)
+        } else if
+            let maxFeePerGasString = map["maxFeePerGas"] as? String, let maxFeePerGas = Int(maxFeePerGasString),
+            let maxPriorityFeePerGasString = map["maxPriorityFeePerGas"] as? String,
+            let maxPriorityFeePerGas = Int(maxPriorityFeePerGasString)
         {
             gasPrice = .eip1559(maxFeePerGas: maxFeePerGas, maxPriorityFeePerGas: maxPriorityFeePerGas)
         } else {
@@ -47,6 +52,8 @@ enum SwapTransactionMapper {
         )
     }
 }
+
+// MARK: SwapTransactionMapper.ResponseError
 
 extension SwapTransactionMapper {
     public enum ResponseError: Error {

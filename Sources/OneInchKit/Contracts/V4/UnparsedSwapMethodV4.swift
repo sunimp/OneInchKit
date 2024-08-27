@@ -9,4 +9,4 @@ import Foundation
 
 import EvmKit
 
-class UnparsedSwapMethodV4: ContractMethod {}
+class UnparsedSwapMethodV4: ContractMethod { }

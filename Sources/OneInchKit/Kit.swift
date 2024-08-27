@@ -11,6 +11,8 @@ import BigInt
 import EvmKit
 import WWToolKit
 
+// MARK: - Kit
+
 public class Kit {
     private let provider: OneInchProvider
 
@@ -21,10 +23,21 @@ public class Kit {
 
 extension Kit {
     
-    public func quote(networkManager: NetworkManager, chain: Chain, fromToken: Address, toToken: Address, amount: BigUInt,
-               fee: Decimal? = nil, protocols: String? = nil, gasPrice: GasPrice? = nil, complexityLevel: Int? = nil,
-               connectorTokens: String? = nil, gasLimit: Int? = nil, mainRouteParts: Int? = nil, parts: Int? = nil) async throws -> Quote
-    {
+    public func quote(
+        networkManager: NetworkManager,
+        chain: Chain,
+        fromToken: Address,
+        toToken: Address,
+        amount: BigUInt,
+        fee: Decimal? = nil,
+        protocols: String? = nil,
+        gasPrice: GasPrice? = nil,
+        complexityLevel: Int? = nil,
+        connectorTokens: String? = nil,
+        gasLimit: Int? = nil,
+        mainRouteParts: Int? = nil,
+        parts: Int? = nil
+    ) async throws -> Quote {
         try await provider.quote(
             networkManager: networkManager,
             chain: chain,
@@ -42,11 +55,27 @@ extension Kit {
         )
     }
 
-    public func swap(networkManager: NetworkManager, chain: Chain, receiveAddress: Address, fromToken: Address, toToken: Address,
-              amount: BigUInt, slippage: Decimal, referrer: String? = nil, fee: Decimal? = nil, protocols: [String]? = nil, recipient: Address? = nil,
-              gasPrice: GasPrice? = nil, burnChi: Bool? = nil, complexityLevel: Int? = nil, connectorTokens: [String]? = nil,
-              allowPartialFill: Bool? = nil, gasLimit: Int? = nil, mainRouteParts: Int? = nil, parts: Int? = nil) async throws -> Swap
-    {
+    public func swap(
+        networkManager: NetworkManager,
+        chain: Chain,
+        receiveAddress: Address,
+        fromToken: Address,
+        toToken: Address,
+        amount: BigUInt,
+        slippage: Decimal,
+        referrer: String? = nil,
+        fee: Decimal? = nil,
+        protocols: [String]? = nil,
+        recipient: Address? = nil,
+        gasPrice: GasPrice? = nil,
+        burnChi: Bool? = nil,
+        complexityLevel: Int? = nil,
+        connectorTokens: [String]? = nil,
+        allowPartialFill: Bool? = nil,
+        gasLimit: Int? = nil,
+        mainRouteParts: Int? = nil,
+        parts: Int? = nil
+    ) async throws -> Swap {
         try await provider.swap(
             networkManager: networkManager,
             chain: chain,

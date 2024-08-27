@@ -9,11 +9,14 @@ import Foundation
 
 import BigInt
 
+// MARK: - SwapMapper
+
 enum SwapMapper {
     static func swap(map: [String: Any]) throws -> Swap {
-        guard let fromTokenMap = map["fromToken"] as? [String: Any],
-              let toTokenMap = map["toToken"] as? [String: Any],
-              let transactionMap = map["tx"] as? [String: Any]
+        guard
+            let fromTokenMap = map["fromToken"] as? [String: Any],
+            let toTokenMap = map["toToken"] as? [String: Any],
+            let transactionMap = map["tx"] as? [String: Any]
         else {
             throw ResponseError.invalidJson
         }
@@ -22,8 +25,9 @@ enum SwapMapper {
         let toToken = try TokenMapper.token(map: toTokenMap)
         let transaction = try SwapTransactionMapper.swapTransaction(map: transactionMap)
 
-        guard let toAmountString = map["toAmount"] as? String,
-              let toAmount = BigUInt(toAmountString, radix: 10)
+        guard
+            let toAmountString = map["toAmount"] as? String,
+            let toAmount = BigUInt(toAmountString, radix: 10)
         else {
             throw ResponseError.invalidJson
         }
@@ -37,6 +41,8 @@ enum SwapMapper {
         )
     }
 }
+
+// MARK: SwapMapper.ResponseError
 
 extension SwapMapper {
     public enum ResponseError: Error {

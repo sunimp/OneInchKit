@@ -11,8 +11,8 @@ import BigInt
 import EvmKit
 
 class UnparsedSwapMethodsFactoryV5: IContractMethodsFactory {
-    var methodId: Data { Data() }
-    let methodIds: [Data] = [
+    var methodID: Data { Data() }
+    let methodIDs: [Data] = [
         hexToData("0x84bd6d29"), // clipperSwap
         hexToData("0x093d4fa5"), // clipperSwapTo
         hexToData("0xc805a666"), // clipperSwapToWithPermit

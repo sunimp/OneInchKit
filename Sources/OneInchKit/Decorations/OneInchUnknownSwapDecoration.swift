@@ -10,6 +10,8 @@ import Foundation
 import BigInt
 import EvmKit
 
+// MARK: - OneInchUnknownSwapDecoration
+
 public class OneInchUnknownSwapDecoration: OneInchDecoration {
     
     public let tokenAmountIn: TokenAmount?
@@ -38,6 +40,8 @@ public class OneInchUnknownSwapDecoration: OneInchDecoration {
         return tags
     }
 }
+
+// MARK: OneInchUnknownSwapDecoration.TokenAmount
 
 extension OneInchUnknownSwapDecoration {
     

@@ -14,9 +14,9 @@ import HdWalletKit
 let evmKit = try Kit.instance(
 	address: try EvmKit.Address(hex: "0x..user..address.."),
 	chain: .ethereum,
-	rpcSource: .ethereumInfuraWebsocket(projectId: "...", projectSecret: "..."),
+	rpcSource: .ethereumInfuraWebsocket(projectID: "...", projectSecret: "..."),
 	transactionSource: .ethereumEtherscan(apiKey: "..."),
-	walletId: "unique_wallet_id",
+	walletID: "unique_wallet_id",
 	minLogLevel: .error
 )
 
@@ -93,7 +93,7 @@ sendSingle
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/sunimp/OneInchKit.Swift.git", .upToNextMajor(from: "3.0.5"))
+    .package(url: "https://github.com/sunimp/OneInchKit.Swift.git", .upToNextMajor(from: "3.1.0"))
 ]
 ```
 

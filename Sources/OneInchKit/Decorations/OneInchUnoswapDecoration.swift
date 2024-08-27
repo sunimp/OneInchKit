@@ -17,7 +17,14 @@ public class OneInchUnoswapDecoration: OneInchDecoration {
     public let amountOut: Amount
     public let params: [Data]
 
-    public init(contractAddress: Address, tokenIn: Token, tokenOut: Token?, amountIn: BigUInt, amountOut: Amount, params: [Data]) {
+    public init(
+        contractAddress: Address,
+        tokenIn: Token,
+        tokenOut: Token?,
+        amountIn: BigUInt,
+        amountOut: Amount,
+        params: [Data]
+    ) {
         self.tokenIn = tokenIn
         self.tokenOut = tokenOut
         self.amountIn = amountIn

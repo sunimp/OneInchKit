@@ -11,6 +11,8 @@ import BigInt
 import EvmKit
 import WWExtensions
 
+// MARK: - SwapTransaction
+
 public struct SwapTransaction {
     
     public let from: Address
@@ -29,6 +31,8 @@ public struct SwapTransaction {
         self.gasLimit = gasLimit
     }
 }
+
+// MARK: CustomStringConvertible
 
 extension SwapTransaction: CustomStringConvertible {
     public var description: String {

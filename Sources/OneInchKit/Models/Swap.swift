@@ -9,6 +9,8 @@ import Foundation
 
 import BigInt
 
+// MARK: - Swap
+
 public struct Swap {
     
     public let fromToken: Token
@@ -25,6 +27,8 @@ public struct Swap {
         self.transaction = transaction
     }
 }
+
+// MARK: CustomStringConvertible
 
 extension Swap: CustomStringConvertible {
     public var description: String {

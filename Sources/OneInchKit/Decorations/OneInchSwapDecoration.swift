@@ -20,7 +20,17 @@ public class OneInchSwapDecoration: OneInchDecoration {
     public let data: Data
     public let recipient: Address?
 
-    public init(contractAddress: Address, tokenIn: Token, tokenOut: Token, amountIn: BigUInt, amountOut: Amount, flags: BigUInt, permit: Data, data: Data, recipient: Address?) {
+    public init(
+        contractAddress: Address,
+        tokenIn: Token,
+        tokenOut: Token,
+        amountIn: BigUInt,
+        amountOut: Amount,
+        flags: BigUInt,
+        permit: Data,
+        data: Data,
+        recipient: Address?
+    ) {
         self.tokenIn = tokenIn
         self.tokenOut = tokenOut
         self.amountIn = amountIn
