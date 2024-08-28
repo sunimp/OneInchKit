@@ -23,7 +23,7 @@ class OneInchProvider {
     ]
 
     private var url: String { "https://api.1inch.dev/swap/" }
-    private var headers: HTTPHeaders? = nil
+    private var headers: HTTPHeaders?
 
     init(apiKey: String) {
         headers = HTTPHeaders([HTTPHeader.authorization(bearerToken: apiKey)])

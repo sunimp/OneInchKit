@@ -11,7 +11,7 @@ import BigInt
 import EvmKit
 
 class UnoswapMethodFactoryV4: IContractMethodFactory {
-    let methodID: Data = ContractMethodHelper.methodID(signature: UnoswapMethodV4.methodSignature)
+    let methodId: Data = ContractMethodHelper.methodId(signature: UnoswapMethodV4.methodSignature)
 
     func createMethod(inputArguments: Data) throws -> ContractMethod {
         let parsedArguments = ContractMethodHelper.decodeABI(

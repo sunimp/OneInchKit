@@ -34,7 +34,7 @@ class Manager {
             chain: configuration.chain,
             rpcSource: configuration.rpcSource,
             transactionSource: configuration.transactionSource,
-            walletID: "walletID",
+            walletId: "walletId",
             minLogLevel: configuration.minLogLevel
         )
 
@@ -103,14 +103,14 @@ class Manager {
 
 extension Manager {
     func login(words: [String]) throws {
-        try Kit.clear(exceptFor: ["walletID"])
+        try Kit.clear(exceptFor: ["walletId"])
 
         save(words: words)
         try initKit(words: words)
     }
 
     func watch(address: Address) throws {
-        try Kit.clear(exceptFor: ["walletID"])
+        try Kit.clear(exceptFor: ["walletId"])
 
         save(address: address.hex)
         try initKit(address: address)

@@ -11,7 +11,7 @@ import BigInt
 import EvmKit
 
 class SwapMethodFactoryV5: IContractMethodFactory {
-    let methodID: Data = ContractMethodHelper.methodID(signature: SwapMethodV5.methodSignature)
+    let methodId: Data = ContractMethodHelper.methodId(signature: SwapMethodV5.methodSignature)
 
     func createMethod(inputArguments: Data) throws -> ContractMethod {
         let argumentTypes: [Any] = [
