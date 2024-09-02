@@ -1,26 +1,28 @@
 //
 //  SwapTransaction.swift
-//  OneInchKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2021/6/9.
 //
 
 import Foundation
 
 import BigInt
-import EvmKit
+import EVMKit
 import WWExtensions
 
 // MARK: - SwapTransaction
 
 public struct SwapTransaction {
-    
+    // MARK: Properties
+
     public let from: Address
     public let to: Address
     public let data: Data
     public let value: BigUInt
     public let gasPrice: GasPrice
     public let gasLimit: Int
+
+    // MARK: Lifecycle
 
     public init(from: Address, to: Address, data: Data, value: BigUInt, gasPrice: GasPrice, gasLimit: Int) {
         self.from = from

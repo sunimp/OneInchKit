@@ -1,16 +1,17 @@
 //
 //  OneInchSwapDecoration.swift
-//  OneInchKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2022/4/7.
 //
 
 import Foundation
 
 import BigInt
-import EvmKit
+import EVMKit
 
 public class OneInchSwapDecoration: OneInchDecoration {
+    // MARK: Properties
+
     public let tokenIn: Token
     public let tokenOut: Token
     public let amountIn: BigUInt
@@ -19,6 +20,8 @@ public class OneInchSwapDecoration: OneInchDecoration {
     public let permit: Data
     public let data: Data
     public let recipient: Address?
+
+    // MARK: Lifecycle
 
     public init(
         contractAddress: Address,
@@ -42,6 +45,8 @@ public class OneInchSwapDecoration: OneInchDecoration {
 
         super.init(contractAddress: contractAddress)
     }
+
+    // MARK: Overridden Functions
 
     override public func tags() -> [TransactionTag] {
         var tags = [TransactionTag]()

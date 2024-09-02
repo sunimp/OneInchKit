@@ -1,31 +1,42 @@
 //
 //  OneInchTransactionDecorator.swift
-//  OneInchKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2021/7/6.
 //
 
 import Foundation
 
 import BigInt
-import Eip20Kit
-import EvmKit
+import EIP20Kit
+import EVMKit
 
 // MARK: - OneInchTransactionDecorator
 
 class OneInchTransactionDecorator {
+    // MARK: Static Properties
+
     private static let ethTokenAddresses = [
         "0xEeeeeEeeeEeEeeEeEeEeeEEEeeeeEeeeeeeeEEeE",
         "0x0000000000000000000000000000000000000000",
     ]
 
+    // MARK: Properties
+
     private let address: Address
+
+    // MARK: Lifecycle
 
     init(address: Address) {
         self.address = address
     }
 
-    private func incomingTransfers(userAddress: Address, eventInstances: [ContractEventInstance]) -> [TransferEventInstance] {
+    // MARK: Functions
+
+    private func incomingTransfers(
+        userAddress: Address,
+        eventInstances: [ContractEventInstance]
+    )
+        -> [TransferEventInstance] {
         eventInstances.compactMap {
             if let transferEventInstance = $0 as? TransferEventInstance, transferEventInstance.to == userAddress {
                 transferEventInstance
@@ -35,7 +46,11 @@ class OneInchTransactionDecorator {
         }
     }
 
-    private func outgoingTransfers(userAddress: Address, eventInstances: [ContractEventInstance]) -> [TransferEventInstance] {
+    private func outgoingTransfers(
+        userAddress: Address,
+        eventInstances: [ContractEventInstance]
+    )
+        -> [TransferEventInstance] {
         eventInstances.compactMap {
             if let transferEventInstance = $0 as? TransferEventInstance, transferEventInstance.from == userAddress {
                 transferEventInstance
@@ -77,7 +92,8 @@ class OneInchTransactionDecorator {
         } else {
             return .eip20Coin(
                 address: address,
-                tokenInfo: eventInstances.compactMap { $0 as? TransferEventInstance }.first { $0.contractAddress == address }?
+                tokenInfo: eventInstances.compactMap { $0 as? TransferEventInstance }
+                    .first { $0.contractAddress == address }?
                     .tokenInfo
             )
         }
@@ -94,7 +110,8 @@ extension OneInchTransactionDecorator: ITransactionDecorator {
         contractMethod: ContractMethod?,
         internalTransactions: [InternalTransaction],
         eventInstances: [ContractEventInstance]
-    ) -> TransactionDecoration? {
+    )
+        -> TransactionDecoration? {
         guard let from, let to, let value, let contractMethod else {
             return nil
         }
@@ -118,7 +135,10 @@ extension OneInchTransactionDecorator: ITransactionDecorator {
             case .eip20Coin:
                 let totalAmount = totalAmount(
                     tokenAddress: swapDescription.dstToken,
-                    transfers: incomingTransfers(userAddress: swapDescription.dstReceiver, eventInstances: eventInstances)
+                    transfers: incomingTransfers(
+                        userAddress: swapDescription.dstReceiver,
+                        eventInstances: eventInstances
+                    )
                 )
                 if totalAmount != 0 {
                     amountOut = .exact(value: totalAmount)
@@ -187,7 +207,10 @@ extension OneInchTransactionDecorator: ITransactionDecorator {
             case .eip20Coin:
                 let totalAmount = totalAmount(
                     tokenAddress: swapDescription.dstToken,
-                    transfers: incomingTransfers(userAddress: swapDescription.dstReceiver, eventInstances: eventInstances)
+                    transfers: incomingTransfers(
+                        userAddress: swapDescription.dstReceiver,
+                        eventInstances: eventInstances
+                    )
                 )
                 if totalAmount != 0 {
                     amountOut = .exact(value: totalAmount)
@@ -238,7 +261,8 @@ extension OneInchTransactionDecorator: ITransactionDecorator {
                 params: []
             )
 
-        case is UnparsedSwapMethodV4, is UnparsedSwapMethodV5:
+        case is UnparsedSwapMethodV4,
+             is UnparsedSwapMethodV5:
             var totalInternalValue: BigUInt = 0
 
             for internalTransaction in internalTransactions {
@@ -251,7 +275,10 @@ extension OneInchTransactionDecorator: ITransactionDecorator {
             var tokenAmountIn: OneInchUnknownSwapDecoration.TokenAmount?
 
             if value > totalInternalValue {
-                tokenAmountIn = OneInchUnknownSwapDecoration.TokenAmount(token: .evmCoin, value: value - totalInternalValue)
+                tokenAmountIn = OneInchUnknownSwapDecoration.TokenAmount(
+                    token: .evmCoin,
+                    value: value - totalInternalValue
+                )
             } else if let firstTransfer = outgoingTransfers.first {
                 let total = totalAmount(tokenAddress: firstTransfer.contractAddress, transfers: outgoingTransfers)
                 tokenAmountIn = OneInchUnknownSwapDecoration.TokenAmount(
@@ -263,7 +290,10 @@ extension OneInchTransactionDecorator: ITransactionDecorator {
             var tokenAmountOut: OneInchUnknownSwapDecoration.TokenAmount?
 
             if value < totalInternalValue {
-                tokenAmountOut = OneInchUnknownSwapDecoration.TokenAmount(token: .evmCoin, value: totalInternalValue - value)
+                tokenAmountOut = OneInchUnknownSwapDecoration.TokenAmount(
+                    token: .evmCoin,
+                    value: totalInternalValue - value
+                )
             } else if let firstTransfer = incomingTransfers.first {
                 let total = totalAmount(tokenAddress: firstTransfer.contractAddress, transfers: incomingTransfers)
                 tokenAmountOut = OneInchUnknownSwapDecoration.TokenAmount(

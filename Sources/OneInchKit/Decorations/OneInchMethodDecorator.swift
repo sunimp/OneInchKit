@@ -1,18 +1,21 @@
 //
 //  OneInchMethodDecorator.swift
-//  OneInchKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2022/4/7.
 //
 
 import Foundation
 
-import EvmKit
+import EVMKit
 
 // MARK: - OneInchMethodDecorator
 
 class OneInchMethodDecorator {
+    // MARK: Properties
+
     private let contractMethodFactories: OneInchContractMethodFactories
+
+    // MARK: Lifecycle
 
     init(contractMethodFactories: OneInchContractMethodFactories) {
         self.contractMethodFactories = contractMethodFactories

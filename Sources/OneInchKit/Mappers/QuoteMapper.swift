@@ -1,8 +1,7 @@
 //
 //  QuoteMapper.swift
-//  OneInchKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2021/6/9.
 //
 
 import Foundation

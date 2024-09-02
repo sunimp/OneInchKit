@@ -9,7 +9,7 @@ import Foundation
 
 import BigInt
 import Combine
-import EvmKit
+import EVMKit
 
 class EthereumAdapter {
     private let evmKit: Kit

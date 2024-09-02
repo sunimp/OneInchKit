@@ -7,7 +7,7 @@
 
 import UIKit
 
-import EvmKit
+import EVMKit
 
 class MainController: UITabBarController {
     override func viewDidLoad() {

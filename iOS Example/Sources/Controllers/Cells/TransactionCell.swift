@@ -8,7 +8,7 @@
 import UIKit
 
 import BigInt
-import EvmKit
+import EVMKit
 import SnapKit
 
 class TransactionCell: UITableViewCell {

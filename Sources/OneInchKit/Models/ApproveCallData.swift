@@ -1,23 +1,26 @@
 //
 //  ApproveCallData.swift
-//  OneInchKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2021/6/9.
 //
 
 import Foundation
 
 import BigInt
-import EvmKit
+import EVMKit
 import WWExtensions
 
 // MARK: - ApproveCallData
 
 public struct ApproveCallData {
+    // MARK: Properties
+
     public let data: Data
     public let gasPrice: Int
     public let to: Address
     public let value: BigUInt
+
+    // MARK: Lifecycle
 
     init(data: Data, gasPrice: Int, to: Address, value: BigUInt) {
         self.data = data

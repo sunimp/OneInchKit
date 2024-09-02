@@ -1,17 +1,20 @@
 //
 //  SwapMethodFactoryV5.swift
-//  OneInchKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2021/7/6.
 //
 
 import Foundation
 
 import BigInt
-import EvmKit
+import EVMKit
 
 class SwapMethodFactoryV5: IContractMethodFactory {
-    let methodId: Data = ContractMethodHelper.methodId(signature: SwapMethodV5.methodSignature)
+    // MARK: Properties
+
+    let methodID: Data = ContractMethodHelper.methodID(signature: SwapMethodV5.methodSignature)
+
+    // MARK: Functions
 
     func createMethod(inputArguments: Data) throws -> ContractMethod {
         let argumentTypes: [Any] = [
@@ -28,7 +31,10 @@ class SwapMethodFactoryV5: IContractMethodFactory {
             Data.self,
             Data.self,
         ]
-        let parsedArguments = ContractMethodHelper.decodeABI(inputArguments: inputArguments, argumentTypes: argumentTypes)
+        let parsedArguments = ContractMethodHelper.decodeABI(
+            inputArguments: inputArguments,
+            argumentTypes: argumentTypes
+        )
 
         guard
             let caller = parsedArguments[0] as? Address,

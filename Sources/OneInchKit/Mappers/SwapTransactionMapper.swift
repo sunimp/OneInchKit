@@ -1,14 +1,13 @@
 //
 //  SwapTransactionMapper.swift
-//  OneInchKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2021/6/9.
 //
 
 import Foundation
 
 import BigInt
-import EvmKit
+import EVMKit
 
 // MARK: - SwapTransactionMapper
 
@@ -35,8 +34,7 @@ enum SwapTransactionMapper {
         } else if
             let maxFeePerGasString = map["maxFeePerGas"] as? String, let maxFeePerGas = Int(maxFeePerGasString),
             let maxPriorityFeePerGasString = map["maxPriorityFeePerGas"] as? String,
-            let maxPriorityFeePerGas = Int(maxPriorityFeePerGasString)
-        {
+            let maxPriorityFeePerGas = Int(maxPriorityFeePerGasString) {
             gasPrice = .eip1559(maxFeePerGas: maxFeePerGas, maxPriorityFeePerGas: maxPriorityFeePerGas)
         } else {
             throw ResponseError.invalidJson

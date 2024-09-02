@@ -7,7 +7,7 @@
 
 import UIKit
 
-import EvmKit
+import EVMKit
 import HDWalletKit
 import OneInchKit
 import SnapKit

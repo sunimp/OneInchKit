@@ -1,8 +1,7 @@
 //
 //  TokenMapper.swift
-//  OneInchKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2021/6/9.
 //
 
 import Foundation
@@ -20,7 +19,13 @@ enum TokenMapper {
             throw ResponseError.invalidJson
         }
 
-        return Token(symbol: symbol, name: name, decimals: decimals, address: address, logoUri: map["logoURI"] as? String ?? "")
+        return Token(
+            symbol: symbol,
+            name: name,
+            decimals: decimals,
+            address: address,
+            logoUri: map["logoURI"] as? String ?? ""
+        )
     }
 }
 

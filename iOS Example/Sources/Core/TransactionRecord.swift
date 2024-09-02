@@ -7,7 +7,7 @@
 
 import Foundation
 
-import EvmKit
+import EVMKit
 
 struct TransactionRecord {
     let transactionHash: String

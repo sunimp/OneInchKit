@@ -1,22 +1,22 @@
 # OneInchKit.Swift
 
-`OneInchKit.Swift` is an extension to `EvmKit.Swift`, that wraps interactions with [`1Inch API`](https://docs.1inch.io/docs/aggregation-protocol/api/swagger/).
+`OneInchKit.Swift` is an extension to `EVMKit.Swift`, that wraps interactions with [`1Inch API`](https://docs.1inch.io/docs/aggregation-protocol/api/swagger/).
 
 ## Usage
 
 ### Initialization
 
 ```swift
-import EvmKit
+import EVMKit
 import OneInchKit
 import HdWalletKit
 
 let evmKit = try Kit.instance(
-	address: try EvmKit.Address(hex: "0x..user..address.."),
+	address: try EVMKit.Address(hex: "0x..user..address.."),
 	chain: .ethereum,
 	rpcSource: .ethereumInfuraWebsocket(projectId: "...", projectSecret: "..."),
 	transactionSource: .ethereumEtherscan(apiKey: "..."),
-	walletId: "unique_wallet_id",
+	walletID: "unique_wallet_id",
 	minLogLevel: .error
 )
 
@@ -34,8 +34,8 @@ let seed = Mnemonic.seed(mnemonic: ["mnemonic", "words", ...])!
 let signer = try Signer.instance(seed: seed, chain: .ethereum)
 
 // Sample swap data
-let tokenFromAddress = try! EvmKit.Address(hex: "0x..from..token..address")
-let tokenToAddress = try! EvmKit.Address(hex: "0x..to..token..address")
+let tokenFromAddress = try! EVMKit.Address(hex: "0x..from..token..address")
+let tokenToAddress = try! EVMKit.Address(hex: "0x..to..token..address")
 let amount = BigUInt("100000000000000000")
 let gasPrice = GasPrice.legacy(gasPrice: 50_000_000_000)
 
@@ -60,7 +60,7 @@ let swapDataSingle: Single<Swap> = swapKit.swapSingle(
 // Generate a raw transaction
 let rawTransactionSingle = swapDataSingle.flatMap { swap in
     let tx = swap.transaction
-    let transactionData = EvmKit.TransactionData(to: tx.to, value: tx.value, input: tx.data)
+    let transactionData = EVMKit.TransactionData(to: tx.to, value: tx.value, input: tx.data)
 
     return evmKit.rawTransaction(transactionData: transactionData, gasPrice: gasPrice, gasLimit: tx.gasLimit)
 }
@@ -93,11 +93,11 @@ sendSingle
 
 ```swift
 dependencies: [
-    .package(url: "https://github.com/sunimp/OneInchKit.Swift.git", .upToNextMajor(from: "3.1.1"))
+    .package(url: "https://github.com/sunimp/OneInchKit.Swift.git", .upToNextMajor(from: "3.2.0"))
 ]
 ```
 
 ## License
 
-The `OneInchKit.Swift` toolkit is open source and available under the terms of the [MIT License](https://github.com/sunimp/OneInchKit.Swift/blob/master/LICENSE).
+The `OneInchKit.Swift` toolkit is open source and available under the terms of the [MIT License](https://github.com/sunimp/OneInchKit.Swift/blob/main/LICENSE).
 

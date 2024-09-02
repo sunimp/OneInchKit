@@ -1,20 +1,23 @@
 //
 //  Kit.swift
-//  OneInchKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2021/6/9.
 //
 
 import Foundation
 
 import BigInt
-import EvmKit
+import EVMKit
 import WWToolKit
 
 // MARK: - Kit
 
 public class Kit {
+    // MARK: Properties
+
     private let provider: OneInchProvider
+
+    // MARK: Lifecycle
 
     init(provider: OneInchProvider) {
         self.provider = provider
@@ -22,7 +25,6 @@ public class Kit {
 }
 
 extension Kit {
-    
     public func quote(
         networkManager: NetworkManager,
         chain: Chain,
@@ -37,7 +39,8 @@ extension Kit {
         gasLimit: Int? = nil,
         mainRouteParts: Int? = nil,
         parts: Int? = nil
-    ) async throws -> Quote {
+    ) async throws
+        -> Quote {
         try await provider.quote(
             networkManager: networkManager,
             chain: chain,
@@ -75,7 +78,8 @@ extension Kit {
         gasLimit: Int? = nil,
         mainRouteParts: Int? = nil,
         parts: Int? = nil
-    ) async throws -> Swap {
+    ) async throws
+        -> Swap {
         try await provider.swap(
             networkManager: networkManager,
             chain: chain,
@@ -105,15 +109,29 @@ extension Kit {
         Kit(provider: OneInchProvider(apiKey: apiKey))
     }
 
-    public static func addDecorators(to evmKit: EvmKit.Kit) {
-        evmKit.add(methodDecorator: OneInchMethodDecorator(contractMethodFactories: OneInchContractMethodFactories.shared))
+    public static func addDecorators(to evmKit: EVMKit.Kit) {
+        evmKit
+            .add(methodDecorator: OneInchMethodDecorator(
+                contractMethodFactories: OneInchContractMethodFactories
+                    .shared
+            ))
         evmKit.add(transactionDecorator: OneInchTransactionDecorator(address: evmKit.address))
     }
 
     public static func routerAddress(chain: Chain) throws -> Address {
         switch chain.id {
-        case 1, 10, 56, 100, 137, 250, 42161, 43114: return try Address(hex: "0x1111111254EEB25477B68fb85Ed929f73A960582")
-        case 3, 4, 5, 42: return try Address(hex: "0x11111112542d85b3ef69ae05771c2dccff4faa26")
+        case 1,
+             10,
+             56,
+             100,
+             137,
+             250,
+             42161,
+             43114: return try Address(hex: "0x1111111254EEB25477B68fb85Ed929f73A960582")
+        case 3,
+             4,
+             5,
+             42: return try Address(hex: "0x11111112542d85b3ef69ae05771c2dccff4faa26")
         default: throw UnsupportedChainError.noRouterAddress
         }
     }

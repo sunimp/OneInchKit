@@ -1,18 +1,18 @@
 //
 //  UnparsedSwapMethodsFactoryV5.swift
-//  OneInchKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2022/12/9.
 //
 
 import Foundation
 
 import BigInt
-import EvmKit
+import EVMKit
 
 class UnparsedSwapMethodsFactoryV5: IContractMethodsFactory {
-    var methodId: Data { Data() }
-    let methodIds: [Data] = [
+    // MARK: Properties
+
+    let methodIDs: [Data] = [
         hexToData("0x84bd6d29"), // clipperSwap
         hexToData("0x093d4fa5"), // clipperSwapTo
         hexToData("0xc805a666"), // clipperSwapToWithPermit
@@ -31,9 +31,11 @@ class UnparsedSwapMethodsFactoryV5: IContractMethodsFactory {
         hexToData("0x3c15fd91"), // unoswapToWithPermit
     ]
 
-    func createMethod(inputArguments _: Data) throws -> ContractMethod {
-        UnparsedSwapMethodV5()
-    }
+    // MARK: Computed Properties
+
+    var methodID: Data { Data() }
+
+    // MARK: Static Functions
 
     private static func uint8(_ s: String) -> UInt8 {
         UInt8(s, radix: 16) ?? 0
@@ -48,6 +50,17 @@ class UnparsedSwapMethodsFactoryV5: IContractMethodsFactory {
         let n3 = s.prefix(2)
         let n4 = s.suffix(2)
 
-        return Data([UInt8(n1, radix: 16) ?? 0, UInt8(n2, radix: 16) ?? 0, UInt8(n3, radix: 16) ?? 0, UInt8(n4, radix: 16) ?? 0])
+        return Data([
+            UInt8(n1, radix: 16) ?? 0,
+            UInt8(n2, radix: 16) ?? 0,
+            UInt8(n3, radix: 16) ?? 0,
+            UInt8(n4, radix: 16) ?? 0,
+        ])
+    }
+
+    // MARK: Functions
+
+    func createMethod(inputArguments _: Data) throws -> ContractMethod {
+        UnparsedSwapMethodV5()
     }
 }

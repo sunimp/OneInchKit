@@ -1,16 +1,19 @@
 //
 //  OneInchContractMethodFactories.swift
-//  OneInchKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2021/7/6.
 //
 
 import Foundation
 
-import EvmKit
+import EVMKit
 
 class OneInchContractMethodFactories: ContractMethodFactories {
+    // MARK: Static Properties
+
     static let shared = OneInchContractMethodFactories()
+
+    // MARK: Lifecycle
 
     override init() {
         super.init()

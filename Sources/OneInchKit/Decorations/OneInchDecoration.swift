@@ -1,29 +1,34 @@
 //
 //  OneInchDecoration.swift
-//  OneInchKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2022/4/7.
 //
 
 import Foundation
 
 import BigInt
-import Eip20Kit
-import EvmKit
+import EIP20Kit
+import EVMKit
 
 // MARK: - OneInchDecoration
 
 open class OneInchDecoration: TransactionDecoration {
+    // MARK: Properties
+
     public let contractAddress: Address
-    
+
+    // MARK: Lifecycle
+
     public init(contractAddress: Address) {
         self.contractAddress = contractAddress
     }
-    
+
+    // MARK: Functions
+
     func tag(token: Token, type: TransactionTag.TagType, addresses: [String] = []) -> TransactionTag {
         switch token {
         case .evmCoin: TransactionTag(type: type, protocol: .native, addresses: addresses)
-        case .eip20Coin(let tokenAddress, _): TransactionTag(
+        case let .eip20Coin(tokenAddress, _): TransactionTag(
                 type: type,
                 protocol: .eip20,
                 contractAddress: tokenAddress,
@@ -34,7 +39,6 @@ open class OneInchDecoration: TransactionDecoration {
 }
 
 extension OneInchDecoration {
-    
     public enum Amount {
         case exact(value: BigUInt)
         case extremum(value: BigUInt)
@@ -43,10 +47,12 @@ extension OneInchDecoration {
     public enum Token {
         case evmCoin
         case eip20Coin(address: Address, tokenInfo: TokenInfo?)
-        
+
+        // MARK: Computed Properties
+
         public var tokenInfo: TokenInfo? {
             switch self {
-            case .eip20Coin(_, let tokenInfo):
+            case let .eip20Coin(_, tokenInfo):
                 tokenInfo
             default:
                 nil

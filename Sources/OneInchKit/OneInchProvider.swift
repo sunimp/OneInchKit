@@ -1,20 +1,21 @@
 //
 //  OneInchProvider.swift
-//  OneInchKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2021/6/9.
 //
 
 import Foundation
 
 import Alamofire
 import BigInt
-import EvmKit
+import EVMKit
 import WWToolKit
 
 // MARK: - OneInchProvider
 
 class OneInchProvider {
+    // MARK: Static Properties
+
     private static let notEnoughEthErrors = [
         "Try to leave the buffer of ETH for gas",
         "you may not have enough ETH balance for gas fee",
@@ -22,12 +23,33 @@ class OneInchProvider {
         "insufficient funds for transfer",
     ]
 
-    private var url: String { "https://api.1inch.dev/swap/" }
+    // MARK: Properties
+
     private var headers: HTTPHeaders?
+
+    // MARK: Computed Properties
+
+    private var url: String { "https://api.1inch.dev/swap/" }
+
+    // MARK: Lifecycle
 
     init(apiKey: String) {
         headers = HTTPHeaders([HTTPHeader.authorization(bearerToken: apiKey)])
     }
+
+    // MARK: Static Functions
+
+    private static func notEnoughErrorContains(in message: String) -> Bool {
+        for error in notEnoughEthErrors {
+            if message.contains(error) {
+                return true
+            }
+        }
+
+        return false
+    }
+
+    // MARK: Functions
 
     private func params(dictionary: [String: Any?]) -> [String: Any] {
         var result = [String: Any]()
@@ -39,14 +61,6 @@ class OneInchProvider {
         }
 
         return result
-    }
-
-    private static func notEnoughErrorContains(in message: String) -> Bool {
-        for error in notEnoughEthErrors {
-            if message.contains(error) { return true }
-        }
-
-        return false
     }
 }
 
@@ -68,7 +82,8 @@ extension OneInchProvider {
         includeTokensInfo: Bool = true,
         includeProtocols: Bool = true,
         includeGas: Bool = true
-    ) async throws -> Quote {
+    ) async throws
+        -> Quote {
         var parameters = params(
             dictionary:
             [
@@ -89,10 +104,10 @@ extension OneInchProvider {
         )
 
         switch gasPrice {
-        case .legacy(let legacyGasPrice):
+        case let .legacy(legacyGasPrice):
             parameters["gasPrice"] = legacyGasPrice
 
-        case .eip1559(let maxFeePerGas, let maxPriorityFeePerGas):
+        case let .eip1559(maxFeePerGas, maxPriorityFeePerGas):
             parameters["maxFeePerGas"] = maxFeePerGas
             parameters["maxPriorityFeePerGas"] = maxPriorityFeePerGas
 
@@ -118,8 +133,7 @@ extension OneInchProvider {
                 let responseError = error as? NetworkManager.ResponseError,
                 let dictionary = responseError.json as? [String: Any],
                 let message = dictionary["message"] as? String,
-                message.contains("insufficient liquidity")
-            {
+                message.contains("insufficient liquidity") {
                 throw Kit.QuoteError.insufficientLiquidity
             }
 
@@ -150,7 +164,8 @@ extension OneInchProvider {
         includeTokensInfo: Bool = true,
         includeProtocols: Bool = true,
         includeGas: Bool = true
-    ) async throws -> Swap {
+    ) async throws
+        -> Swap {
         var parameters = params(
             dictionary:
             [
@@ -177,10 +192,10 @@ extension OneInchProvider {
         )
 
         switch gasPrice {
-        case .legacy(let legacyGasPrice):
+        case let .legacy(legacyGasPrice):
             parameters["gasPrice"] = legacyGasPrice
 
-        case .eip1559(let maxFeePerGas, let maxPriorityFeePerGas):
+        case let .eip1559(maxFeePerGas, maxPriorityFeePerGas):
             parameters["maxFeePerGas"] = maxFeePerGas
             parameters["maxPriorityFeePerGas"] = maxPriorityFeePerGas
 
@@ -204,8 +219,7 @@ extension OneInchProvider {
             if
                 let responseError = error as? NetworkManager.ResponseError,
                 let dictionary = responseError.json as? [String: Any],
-                let message = dictionary["message"] as? String
-            {
+                let message = dictionary["message"] as? String {
                 if Self.notEnoughErrorContains(in: message) {
                     throw Kit.SwapError.notEnough
                 } else if message.contains("cannot estimate") {

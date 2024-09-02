@@ -1,17 +1,20 @@
 //
 //  UnoswapMethodFactoryV4.swift
-//  OneInchKit
 //
-//  Created by Sun on 2024/8/21.
+//  Created by Sun on 2021/7/6.
 //
 
 import Foundation
 
 import BigInt
-import EvmKit
+import EVMKit
 
 class UnoswapMethodFactoryV4: IContractMethodFactory {
-    let methodId: Data = ContractMethodHelper.methodId(signature: UnoswapMethodV4.methodSignature)
+    // MARK: Properties
+
+    let methodID: Data = ContractMethodHelper.methodID(signature: UnoswapMethodV4.methodSignature)
+
+    // MARK: Functions
 
     func createMethod(inputArguments: Data) throws -> ContractMethod {
         let parsedArguments = ContractMethodHelper.decodeABI(
