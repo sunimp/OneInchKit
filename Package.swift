@@ -1,4 +1,5 @@
 // swift-tools-version:5.10
+
 import PackageDescription
 
 let package = Package(
@@ -15,23 +16,23 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/attaswift/BigInt.git", from: "5.4.1"),
-        .package(url: "https://github.com/sunimp/EVMKit.Swift.git", .upToNextMajor(from: "2.4.0")),
-        .package(url: "https://github.com/sunimp/EIP20Kit.Swift.git", .upToNextMajor(from: "2.4.0")),
-        .package(url: "https://github.com/sunimp/WWCryptoKit.Swift.git", .upToNextMajor(from: "1.4.0")),
-        .package(url: "https://github.com/sunimp/WWExtensions.Swift.git", .upToNextMajor(from: "1.2.0")),
-        .package(url: "https://github.com/sunimp/WWToolKit.Swift.git", .upToNextMajor(from: "2.2.0")),
-        .package(url: "https://github.com/nicklockwood/SwiftFormat.git", from: "0.54.3"),
+        .package(url: "https://github.com/sunimp/EVMKit.git", .upToNextMajor(from: "1.0.0")),
+        .package(url: "https://github.com/sunimp/EIP20Kit.git", .upToNextMajor(from: "1.0.0")),
+        .package(url: "https://github.com/sunimp/SWCryptoKit.git", .upToNextMajor(from: "1.0.0")),
+        .package(url: "https://github.com/sunimp/SWExtensions.git", .upToNextMajor(from: "1.0.0")),
+        .package(url: "https://github.com/sunimp/SWToolKit.git", .upToNextMajor(from: "1.0.0")),
+        .package(url: "https://github.com/nicklockwood/SwiftFormat.git", from: "0.54.6"),
     ],
     targets: [
         .target(
             name: "OneInchKit",
             dependencies: [
                 "BigInt",
-                .product(name: "EVMKit", package: "EVMKit.Swift"),
-                .product(name: "EIP20Kit", package: "EIP20Kit.Swift"),
-                .product(name: "WWCryptoKit", package: "WWCryptoKit.Swift"),
-                .product(name: "WWExtensions", package: "WWExtensions.Swift"),
-                .product(name: "WWToolKit", package: "WWToolKit.Swift"),
+                "EVMKit",
+                "EIP20Kit",
+                "SWCryptoKit",
+                "SWExtensions",
+                "SWToolKit",
             ]
         ),
     ]

@@ -19,7 +19,7 @@ enum SwapTransactionMapper {
             let toString = map["to"] as? String,
             let to = try? Address(hex: toString),
             let dataString = map["data"] as? String,
-            let data = dataString.ww.hexData,
+            let data = dataString.sw.hexData,
             let valueSting = map["value"] as? String,
             let value = BigUInt(valueSting, radix: 10),
             let gasLimit = map["gas"] as? Int

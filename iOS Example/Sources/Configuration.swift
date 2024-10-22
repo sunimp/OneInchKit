@@ -8,7 +8,7 @@
 import UIKit
 
 import EVMKit
-import WWToolKit
+import SWToolKit
 
 class Configuration {
     static let shared = Configuration()

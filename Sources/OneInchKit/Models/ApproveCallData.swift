@@ -8,7 +8,7 @@ import Foundation
 
 import BigInt
 import EVMKit
-import WWExtensions
+import SWExtensions
 
 // MARK: - ApproveCallData
 
@@ -34,6 +34,6 @@ public struct ApproveCallData {
 
 extension ApproveCallData: CustomStringConvertible {
     public var description: String {
-        "[ApproveCallData: \nto: \(to.hex); \nvalue: \(value.description); \ndata: \(data.ww.hex)]"
+        "[ApproveCallData: \nto: \(to.hex); \nvalue: \(value.description); \ndata: \(data.sw.hex)]"
     }
 }

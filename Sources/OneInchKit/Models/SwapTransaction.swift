@@ -8,7 +8,7 @@ import Foundation
 
 import BigInt
 import EVMKit
-import WWExtensions
+import SWExtensions
 
 // MARK: - SwapTransaction
 
@@ -38,6 +38,6 @@ public struct SwapTransaction {
 
 extension SwapTransaction: CustomStringConvertible {
     public var description: String {
-        "[SwapTransaction {from \(from.hex); to: \(to.hex); data: \(data.ww.hex); value: \(value.description); gasPrice: \(gasPrice); gasLimit: \(gasLimit)]"
+        "[SwapTransaction {from \(from.hex); to: \(to.hex); data: \(data.sw.hex); value: \(value.description); gasPrice: \(gasPrice); gasLimit: \(gasLimit)]"
     }
 }

@@ -3,12 +3,14 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 54;
+	objectVersion = 60;
 	objects = {
 
 /* Begin PBXBuildFile section */
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		A40805F62C75C366003947F1 /* UIExtensions in Frameworks */ = {isa = PBXBuildFile; productRef = A40805F52C75C366003947F1 /* UIExtensions */; };
+		A4898AAE2CC744A6005222FB /* OneInchKit in Frameworks */ = {isa = PBXBuildFile; productRef = A4898AAD2CC744A6005222FB /* OneInchKit */; };
+		A4898AB12CC744BC005222FB /* OneInchKit in Frameworks */ = {isa = PBXBuildFile; productRef = A4898AB02CC744BC005222FB /* OneInchKit */; };
 		D3500A2528ED468D0093A369 /* OneInchKit in Frameworks */ = {isa = PBXBuildFile; productRef = D3500A2428ED468D0093A369 /* OneInchKit */; };
 		D36AAAC923A237940065B32B /* Configuration.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36AAAAF23A237940065B32B /* Configuration.swift */; };
 		D36AAACA23A237940065B32B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D36AAAB023A237940065B32B /* Assets.xcassets */; };
@@ -23,7 +25,6 @@
 		D36AAADB23A237940065B32B /* TransactionsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36AAAC523A237940065B32B /* TransactionsController.swift */; };
 		D36AAADC23A237940065B32B /* SendController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D36AAAC623A237940065B32B /* SendController.swift */; };
 		D36AAADE23A237940065B32B /* LaunchScreen.xib in Resources */ = {isa = PBXBuildFile; fileRef = D36AAAC823A237940065B32B /* LaunchScreen.xib */; };
-		D36DFC2928EBDF5B00D2FC62 /* SnapKit in Frameworks */ = {isa = PBXBuildFile; productRef = D36DFC2828EBDF5B00D2FC62 /* SnapKit */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,7 +52,8 @@
 			buildActionMask = 2147483647;
 			files = (
 				A40805F62C75C366003947F1 /* UIExtensions in Frameworks */,
-				D36DFC2928EBDF5B00D2FC62 /* SnapKit in Frameworks */,
+				A4898AAE2CC744A6005222FB /* OneInchKit in Frameworks */,
+				A4898AB12CC744BC005222FB /* OneInchKit in Frameworks */,
 				D3500A2528ED468D0093A369 /* OneInchKit in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -162,9 +164,10 @@
 			);
 			name = "iOS Example";
 			packageProductDependencies = (
-				D36DFC2828EBDF5B00D2FC62 /* SnapKit */,
 				D3500A2428ED468D0093A369 /* OneInchKit */,
 				A40805F52C75C366003947F1 /* UIExtensions */,
+				A4898AAD2CC744A6005222FB /* OneInchKit */,
+				A4898AB02CC744BC005222FB /* OneInchKit */,
 			);
 			productName = EthereumKit;
 			productReference = 607FACD01AFB9204008FA782 /* OneInchKit Demo.app */;
@@ -178,7 +181,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = YES;
 				LastSwiftUpdateCheck = 0830;
-				LastUpgradeCheck = 1540;
+				LastUpgradeCheck = 1600;
 				ORGANIZATIONNAME = CocoaPods;
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
@@ -197,8 +200,8 @@
 			);
 			mainGroup = 607FACC71AFB9204008FA782;
 			packageReferences = (
-				D36DFC2728EBDF5B00D2FC62 /* XCRemoteSwiftPackageReference "SnapKit" */,
-				A40805F42C75C366003947F1 /* XCRemoteSwiftPackageReference "UIExtensions.Swift" */,
+				A40805F42C75C366003947F1 /* XCRemoteSwiftPackageReference "UIExtensions" */,
+				A4898AAF2CC744BC005222FB /* XCLocalSwiftPackageReference "../../OneInchKit" */,
 			);
 			productRefGroup = 607FACD11AFB9204008FA782 /* Products */;
 			projectDirPath = "";
@@ -423,21 +426,20 @@
 		};
 /* End XCConfigurationList section */
 
-/* Begin XCRemoteSwiftPackageReference section */
-		A40805F42C75C366003947F1 /* XCRemoteSwiftPackageReference "UIExtensions.Swift" */ = {
-			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/sunimp/UIExtensions.Swift.git";
-			requirement = {
-				kind = upToNextMajorVersion;
-				minimumVersion = 1.3.0;
-			};
+/* Begin XCLocalSwiftPackageReference section */
+		A4898AAF2CC744BC005222FB /* XCLocalSwiftPackageReference "../../OneInchKit" */ = {
+			isa = XCLocalSwiftPackageReference;
+			relativePath = ../../OneInchKit;
 		};
-		D36DFC2728EBDF5B00D2FC62 /* XCRemoteSwiftPackageReference "SnapKit" */ = {
+/* End XCLocalSwiftPackageReference section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		A40805F42C75C366003947F1 /* XCRemoteSwiftPackageReference "UIExtensions" */ = {
 			isa = XCRemoteSwiftPackageReference;
-			repositoryURL = "https://github.com/SnapKit/SnapKit.git";
+			repositoryURL = "https://github.com/sunimp/UIExtensions.git";
 			requirement = {
 				kind = upToNextMajorVersion;
-				minimumVersion = 5.7.1;
+				minimumVersion = 1.0.0;
 			};
 		};
 /* End XCRemoteSwiftPackageReference section */
@@ -445,17 +447,20 @@
 /* Begin XCSwiftPackageProductDependency section */
 		A40805F52C75C366003947F1 /* UIExtensions */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = A40805F42C75C366003947F1 /* XCRemoteSwiftPackageReference "UIExtensions.Swift" */;
+			package = A40805F42C75C366003947F1 /* XCRemoteSwiftPackageReference "UIExtensions" */;
 			productName = UIExtensions;
+		};
+		A4898AAD2CC744A6005222FB /* OneInchKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = OneInchKit;
+		};
+		A4898AB02CC744BC005222FB /* OneInchKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			productName = OneInchKit;
 		};
 		D3500A2428ED468D0093A369 /* OneInchKit */ = {
 			isa = XCSwiftPackageProductDependency;
 			productName = OneInchKit;
-		};
-		D36DFC2828EBDF5B00D2FC62 /* SnapKit */ = {
-			isa = XCSwiftPackageProductDependency;
-			package = D36DFC2728EBDF5B00D2FC62 /* XCRemoteSwiftPackageReference "SnapKit" */;
-			productName = SnapKit;
 		};
 /* End XCSwiftPackageProductDependency section */
 	};
